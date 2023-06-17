@@ -1,0 +1,7 @@
+.history{
+    display: flex;
+    gap: 1em;
+    padding: 1em;
+    flex-wrap: wrap;
+    background-color: rgba(12, 100, 100, 0.4);
+}

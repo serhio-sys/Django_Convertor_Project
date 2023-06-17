@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" lang="css" href="{% static 'css/form.css' %}"/>
+{% endblock style %}
+{% block body %}
+    <main>
+        <div class="content">
+            <h1>Image Text Reading</h1>
+            <h2>Result</h2>
+            <div>
+                {{result}}
+            </div>
+        </div>
+    </main>
+{% endblock body %}

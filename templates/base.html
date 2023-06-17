@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            background-image: url("{% static 'images/rjd.png' %}");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+    </style>
+    <link rel="stylesheet" lang="css" href="{% static 'css/base.css' %}"/>
+    {% block style %}
+    {% endblock style %}
+    <title>{% block title %}Home{% endblock title %}</title>
+</head>
+<body>
+    <div class="root">
+        {% block header %}
+        <header>
+            <div class="logo">
+                <div class="logo-img">
+
+                </div>
+                <div class="logo-txt">
+                    <a href="{% url 'home' %}">Convertor</a>
+                </div>
+            </div>
+            <div><a href="{% url 'convertors' %}">Convert</a></div>
+            <ul>
+                {% if user.is_authenticated %}
+                    <li>{{user.username}}</li>
+                    <li><a class="a-btn" href="{% url 'history' %}">History</a></li>
+                    <li><form method="post" action="{% url 'account_logout' %}">{% csrf_token %}<button>Logout</button></form></li>
+                {% else %}
+                    <li><a class="a-btn" href="{% url 'signin' %}">Sing In</a></li>
+                    <li><a class="a-btn" href="{% url 'reg' %}">Sing Up</a></li>
+                {% endif %}
+            </ul>
+        </header>
+        {% endblock header %}
+        {% block body %}
+        <main>
+            <div class="content">
+                <div class="home_text">Home</div>
+            </div>
+        </main>
+        {% endblock body %}
+        {% block footer %}
+        <footer>
+            Footer
+        </footer>
+        {% endblock footer %}
+    </div>
+
+    {% block scripts %}{% endblock scripts %}
+</body>
+</html>

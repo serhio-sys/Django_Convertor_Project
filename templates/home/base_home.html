@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    {% if message %}
+    <div class="message">
+        <div class="message-block">
+            <div>{{message}}</div>
+            <button class="message-btn">Close!</button>
+        </div>
+    </div>
+    {% endif %}
+    <main>
+        <div class="content">
+            <div class="home_text">Home</div>
+        </div>
+    </main>
+{% endblock body %}
+{% block scripts %}
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+        document.querySelector(".message").style.top = "0"
+    });
+    document.querySelector(".message-btn").addEventListener('click',(e)=>{
+        document.querySelector(".message").style.top = "-100%"
+    })
+</script>
+{% endblock scripts %}

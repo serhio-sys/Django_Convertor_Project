@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" lang="css" href="{% static 'css/form.css' %}"/>
+{% endblock style %}
+{% block body %}
+    <main>
+        <div class="content">
+            {% for cat in cats %}
+            <div>
+                {{cat.name}}
+                <a class="a-btn" href="{% url cat.slug cat.slug %}">Go to convert form</a>
+            </div>
+            {% endfor %}
+            <div>
+                <a class="a-btn" href="{% url 'history' %}">All history!</a>
+            </div>
+        </div>
+    </main>
+{% endblock body %}
