@@ -77,29 +77,6 @@ class ConvertionPngToIcoPageView(LoginRequiredMixin,View):
         form.save()
         request.user.csvtoxml.add(form)
         return render(request=request,template_name="home/base_home.html", context={"message":"The file was converted successfully! All your converts you can see in your history ^_^"})
-        
-
-class ImageReader(LoginRequiredMixin,View):
-
-    def get(self,request,slug):
-        cat = get_object_or_404(Category,slug=slug)
-        return render(request=request,template_name="csv-to-xml/csv-to-xml.html",context={"name":cat.name,"form":ConvertionForm()})
-    
-    def post(self,request,slug):
-        cat = get_object_or_404(Category,slug=slug)
-        form = ConvertionForm(request.POST,request.FILES)
-        error_checker(request=request,form=form,fr="jpg")
-        if not form.is_valid():
-            return render(request=request,template_name="csv-to-xml/png-to-ico.html",context={"cat":cat,"form":form}) 
-        convert = Convertion.objects.create(category=cat)
-        convert.file_from.save(request.FILES['file_from'].name,request.FILES['file_from'])
-        image = Image.open(os.path.join(settings.BASE_DIR,"media/"+convert.file_from.name))
-        pytesseract.pytesseract.tesseract_cmd = os.path.join(settings.BASE_DIR,r"utils/Tesseract-OCR/tesseract.exe")
-        text = pytesseract.image_to_string(image)
-        name = convert.file_from.name.split('/')[1].split('.')[0]+".txt"
-        convert.file_to.save(name,ContentFile(text))
-        request.user.csvtoxml.add(convert)
-        return render(request=request,template_name="csv-to-xml/img-reader-result.html",context={"result":text})
 
 
 class ConverterPdfToDocxPageView(LoginRequiredMixin,View):
