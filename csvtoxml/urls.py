@@ -2,10 +2,10 @@ from django.urls import path
 from .views import ConvertorsPageView,DownloadFromPageView,DowloadToPageView,ConverterPdfToDocxPageView,ConvertionPageView,ConvertionPngToIcoPageView
 from .models import Category
 
+
+
 urlpatterns = [
     path("convertors/",ConvertorsPageView.as_view(),name="convertors"),
-    path("convertion/<id>/download_from/",DownloadFromPageView.as_view(),name="download_from"),
-    path("convertion/<id>/download_to/",DowloadToPageView.as_view(),name="download_to"),
 ]
 
 def creatingName(name):

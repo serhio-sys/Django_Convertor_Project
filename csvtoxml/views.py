@@ -14,10 +14,8 @@ from django.http import HttpResponse
 from wsgiref.util import FileWrapper
 from .utils import error_checker
 import uuid
-import pytesseract
 import os
 from pdf2docx import Converter
-from PIL import Image
 # Create your views here.
 
 def file_name_generator(len):
