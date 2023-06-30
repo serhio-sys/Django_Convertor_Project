@@ -5,11 +5,11 @@
 ## Instruction
 - After installation docker on your desktop run command 
 ```
-docker-compose up --build
--------------------------
-For detaching
--------------------------
+----------------------------------------------------
 docker-compose up -d --build
+----------------------------------------------------
+docker-compose exec web python manage.py migrate csvtoxml
+----------------------------------------------------
 ```
 ## By 127.0.0.1:8000 you can see result
 Registration and Log in pages:
